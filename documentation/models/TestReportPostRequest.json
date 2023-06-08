@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "required": [
+      "report_id"
+  ],
+  "properties": {
+      "report_id": {
+          "type": "string",
+          "description": "Filevine report id"
+      }
+  }
+}

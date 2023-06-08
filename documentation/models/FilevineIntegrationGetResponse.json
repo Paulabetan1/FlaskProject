@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "correlation_id": {
+      "type": "string",
+      "description": "UUID of the process"
+    },
+    "credentials": {
+      "type": "object",
+      "description": "Subdomain path",
+      "properties": {
+        "base_url": {
+          "type": "string",
+          "description": "Base_url from Filevine"
+        },
+        "api_key": {
+          "type": "string",
+          "description": "Api Key from Filevine"
+        },
+        "api_secret": {
+          "type": "string",
+          "description": "Api secret from Filevine"
+        }
+      }
+    }
+  }
+}

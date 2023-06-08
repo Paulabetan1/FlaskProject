@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "required": [
+        "base_url",
+        "api_key",
+        "api_secret"
+    ],
+    "properties": {
+        "base_url": {
+            "type": "string",
+            "description": "Base_url from Filevine"
+        },
+        "api_key": {
+            "type": "string",
+            "description": "Api Key from Filevine"
+        },
+        "api_secret": {
+            "type": "string",
+            "description": "Api Secret from Filevine"
+        }
+    }
+}

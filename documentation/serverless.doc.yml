@@ -1,0 +1,68 @@
+documentation:
+  info:
+    version: ${file(./../../serverless.common.yml):documentation.info.version}
+    title: ${file(./../../serverless.common.yml):documentation.info.title}
+    description: ${file(./../../serverless.common.yml):documentation.info.description}
+  models:
+    - name: "TestReportPostRequest"
+      description: "Model for signup"
+      contentType: "application/json"
+      schema: ${file(./documentation/models/TestReportPostRequest.json)}
+    - name: "FilevineIntegrationPostRequest"
+      description: "Create Post request for Filevine"
+      contentType: "application/json"
+      schema: ${file(./documentation/models/FilevineIntegrationPostRequest.json)}
+    - name: "FilevineIntegrationPutRequest"
+      description: "Create Put request for Filevine"
+      contentType: "application/json"
+      schema: ${file(./documentation/models/FilevineIntegrationPutRequest.json)}
+    - name: "FilevineIntegrationGetResponse"
+      description: "Create Get response for Filevine"
+      contentType: "application/json"
+      schema: ${file(./documentation/models/FilevineIntegrationGetResponse.json)}
+    - name: "TestIntegrationConnection"
+      description: "Test the connection from Filevine"
+      contentType: "application/json"
+      schema: ${file(./documentation/models/TestIntegrationConnection.json)}
+
+functions:
+  FilevineIntegrationPostRequest:
+    summary: "Post integration"
+    description: "Create Post request for Filevine"
+    tags:
+      - "integration"
+    requestHeaders: ${file(./../../open_api_doc/models/RequestHeaders.json)}
+    requestModels:
+      "application/json": "FilevineIntegrationPostRequest"
+  FilevineIntegrationPutRequest:
+    summary: "Put integration"
+    description: "Create Put request for Filevine"
+    tags:
+      - "integration"
+    requestHeaders: ${file(./../../open_api_doc/models/RequestHeaders.json)}
+    requestModels:
+      "application/json": "FilevineIntegrationPutRequest"
+  FilevineIntegrationGetResponse:
+    summary: "Get integration"
+    description: "Create Get response for Filevine"
+    tags:
+      - "integration"
+    requestHeaders: ${file(./../../open_api_doc/models/RequestHeaders.json)}
+    requestModels:
+      "application/json": "FilevineIntegrationGetResponse"
+  TestReportPost:
+    summary: "Test report id against the filevine api"
+    description: "Test report id"
+    tags:
+      - "Reports"
+    requestHeaders: ${file(./../../open_api_doc/models/RequestHeaders.json)}
+    requestModels:
+      "application/json": "TestReportPostRequest"
+  TestIntegrationConnection:
+    summary: "Test connection from filevine with the credentials the frontend give me"
+    description: "Test connection from Filevine"
+    tags:
+      - "integration"
+    requestHeaders: ${file(./../../open_api_doc/models/RequestHeaders.json)}
+    requestModels:
+      "application/json": "TestIntegrationConnection"
