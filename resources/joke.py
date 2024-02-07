@@ -8,26 +8,26 @@ blp = Blueprint('joke', __name__)
 
 @blp.route('/jokes', methods=['POST', 'GET'])
 def handle_jokes():
-
     if request.method == 'POST':
-        joke_name = request.args.get("nombreChiste")
-        joke_text = request.args.get("textoChiste")
+        joke_name = request.args.get("jokeName")
+        joke_text = request.args.get("textJoke")
         data = {}
         if joke_name is not None and joke_text is not None :
-            data['nombreChiste'] = joke_name
-            data['textoChiste'] = joke_text          
+            data['jokeName'] = joke_name
+            data['textJoke'] = joke_text          
         if request.is_json:
             data = request.get_json()  
         if data == {} :
             abort(502)
-        new_joke = Joke(nombreChiste=data['nombreChiste'], textoChiste=data['textoChiste'] )  
+        new_joke = Joke(jokeName=data['jokeName'], textJoke=data['textJoke'] )  
+       
         db.session.add(new_joke)
         db.session.commit()
         data = {
-            'nombreChiste': new_joke.nombreChiste,
-            'textoChiste': new_joke.textoChiste
+            'jokeName': new_joke.jokeName,
+            'textJoke': new_joke.textJoke
         }
-        response = template('success', data, 'El chiste se agrego correctamente')
+        response = template('success', data, 'The joke was added correctly')
        
         return response
 
@@ -35,9 +35,9 @@ def handle_jokes():
         jokes = Joke.query.all()
         data = [
             {
-                "id": joke.id,
-                "nombreChiste": joke.nombreChiste,
-                "textoChiste": joke.textoChiste
+                "joke_id": joke.joke_id,
+                "jokeName": joke.jokeName,
+                "textJoke": joke.textJoke
             } for joke in jokes]
         
         response = template('success', data, '')
@@ -50,24 +50,24 @@ def handle_joke(joke_id):
     match request.method:
         case 'GET':
             response_data = {
-            "nombreChiste": joke.nombreChiste,
-            "textoChiste": joke.textoChiste}
+            "jokeName": joke.jokeName,
+            "textJoke": joke.textJoke}
         case 'PUT':
             data = request.get_json()
-            joke.nombreChiste = data['nombreChiste']
-            joke.textoChiste = data['textoChiste']
+            joke.jokeName = data['jokeName']
+            joke.textJoke = data['textJoke']
             db.session.add(joke)
             db.session.commit()
             response_data = {
-            "nombreChiste": joke.nombreChiste,
-            "textoChiste": joke.textoChiste}
+            "jokeName": joke.jokeName,
+            "textJoke": joke.textJoke}
             message = 'successfully updated.'
-            return {"message": f"car {joke.nombreChiste} successfully updated"}
+            return {"message": f"car {joke.jokeName} successfully updated"}
         case 'DELETE':
             db.session.delete(joke)
             db.session.commit()
             response_data = {
-            "nombreChiste": joke.nombreChiste}
+            "jokeName": joke.jokeName}
             message = 'successfully deleted.'
     
     response = template('success', response_data, message)

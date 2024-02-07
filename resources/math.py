@@ -10,14 +10,14 @@ def show_numbers():
     number = request.args.get("number")
     if numbers is None and number is None:
         abort(404)
-    if numbers is not None:
+    if numbers:
         mcm = Mathmcm(numbers)
         result= mcm.get()
-        data = {"MCM es:":result}
-    if number is not None:
-        data = {"Numero +1:":int(number)+1}
+        data = {"MCM is:":result}
+    if number:
+        data = {"Number +1:":int(number)+1}
     
     response = template('success', data, "")
     return response
-
+ 
     
